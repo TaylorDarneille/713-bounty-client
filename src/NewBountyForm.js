@@ -12,32 +12,68 @@ class NewBountyForm extends Component {
         id: this.props.current._id || ''
     }
 
+    submitForm = (e) =>{
+        e.preventDefault()
+        let whichMethod = this.state.id ? 'PUT' : 'POST'
+        fetch('http://localhost:8000/bounties/'+this.state.id, {
+            method: whichMethod,
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response=>response.json())
+        .then(result=>{
+            this.setState({
+                name: '',
+                wantedFor: '',
+                client: '',
+                reward: 0,
+                ship: '',
+                captured: false
+            }, ()=>{
+                this.props.refreshBounties()
+            })
+        })
+        .catch(err=>{
+            console.log('Error in fetch from submit form:', err)
+        })
+    }
+
+    storeInput = (e) =>{
+        if (e.target.name === 'captured') {
+            this.setState({ captured: e.target.checked})
+        } else {
+            this.setState({ [e.target.name]: e.target.value })
+        }
+    }
+
     render(){
         return(
             <div className='bounty-form'>
-                <form>
+                <form onSubmit={this.submitForm}>
                     <div>
-                        <label for="name">Name:</label>
+                        <label htmlFor="name">Name:</label>
                         <input name="name" onChange={this.storeInput} value={this.state.name}/>
                     </div>
                     <div>
-                        <label for="wantedFor">Wanted For:</label>
+                        <label htmlFor="wantedFor">Wanted For:</label>
                         <input name="wantedFor" onChange={this.storeInput} value={this.state.wantedFor}/>
                     </div>
                     <div>
-                        <label for="client">Client:</label>
+                        <label htmlFor="client">Client:</label>
                         <input name="client" onChange={this.storeInput} value={this.state.client}/>
                     </div>
                     <div>
-                        <label for="reward">Reward:</label>
+                        <label htmlFor="reward">Reward:</label>
                         <input name="reward" onChange={this.storeInput} value={this.state.reward}/>
                     </div>
                     <div>
-                        <label for="ship">Ship:</label>
+                        <label htmlFor="ship">Ship:</label>
                         <input name="ship" onChange={this.storeInput} value={this.state.ship}/>
                     </div>
                     <div>
-                        <label for="captured">Captured:</label>
+                        <label htmlFor="captured">Captured:</label>
                         <input type="checkbox" name="captured" onChange={this.storeInput} checked={this.state.captured?"checked":""}/>
                     </div>
                     <input type="submit" value="Bountify!"/>

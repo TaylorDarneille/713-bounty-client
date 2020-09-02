@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Poster from './Poster.js'
 import ShowBounty from './ShowBounty.js'
+import NewBountyForm from './NewBountyForm.js';
 
 class App extends Component {
   state = {
@@ -57,6 +58,7 @@ class App extends Component {
         <main>
           {posters}
           <ShowBounty current={this.state.current} refreshBounties={this.getBounties} />
+          <NewBountyForm current={this.state.current} refreshBounties={this.getBounties}/>
         </main>
       </div>
     )
