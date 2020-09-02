@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Poster from './Poster.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    bounties: [],
+    current: {}
+  }
+
+  // fires as soon as the component loads to the DOM
+  // standard place to make fetch calls to retrieve data
+  // from third parties 
+  componentDidMount() {
+    this.getBounties()
+  }
+
+  getBounties = () => {
+    fetch('http://localhost:8000/bounties')
+    .then(response=>{
+      return response.json()
+    })
+    .then(bounties=>{
+      console.log(bounties)
+      this.setState({bounties: bounties, current: {}})
+    })
+    .catch(err=>{
+      console.log('Error while fetching bounties', err)
+    })
+  }
+
+  render(){
+    let posters = this.state.bounties.map((bounty, i)=>{
+      return <Poster key={i} bounty={bounty}/>
+    })
+    return(
+      <div className="Add">
+        <header className="App-header">
+          <h1>Wanted Poster Bulletin Board</h1>
+          <p>Reduce crime in your galaxy!</p>
+        </header>
+        <main>
+          {posters}
+        </main>
+      </div>
+    )
+  }
 }
 
 export default App;
