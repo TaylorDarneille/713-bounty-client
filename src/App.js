@@ -44,6 +44,7 @@ class App extends Component {
                       bounty={bounty}
                       changeCurrent={this.changeCurrent}
                       currentId={this.state.current._id}
+                      refreshBounties={this.getBounties}
               />)
     })
     return(

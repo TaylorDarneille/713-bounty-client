@@ -1,7 +1,6 @@
 .App {
   text-align: center;
 }
-​
 .App-header {
   background-color: #282c34;
   min-height: 25vh;
@@ -12,17 +11,14 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-​
 .App-link {
   color: #61dafb;
 }
-​
 main {
   padding: 30px;
   background-color: gray;
   min-height: 75vh;
 }
-​
 .poster {
   border: 4px solid #555;
   margin: 10px;
@@ -31,20 +27,17 @@ main {
   min-width: 150px;
   background-color: #eee;
 }
-​
 .show-bounty {
   border: 4px solid black;
   padding-bottom: 10px;
   margin-bottom: 10px;
   background-color: mediumspringgreen;
 }
-​
 .bounty-form {
   padding: 0 10px 10px 10px;
   background-color: beige;
   border: 4px solid #555;
 }
-​
 .bounty-form input {
   width: 100%;
 }
