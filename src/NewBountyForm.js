@@ -51,6 +51,7 @@ class NewBountyForm extends Component {
     render(){
         return(
             <div className='bounty-form'>
+                <h2>{this.state.id ? 'Edit Bounty' : 'Add New Bounty'}</h2>
                 <form onSubmit={this.submitForm}>
                     <div>
                         <label htmlFor="name">Name:</label>

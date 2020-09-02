@@ -7,7 +7,8 @@ import NewBountyForm from './NewBountyForm.js';
 class App extends Component {
   state = {
     bounties: [],
-    current: {}
+    current: {},
+    showForm: false
   }
 
   // fires as soon as the component loads to the DOM
@@ -34,10 +35,15 @@ class App extends Component {
   changeCurrent = (bounty) => {
     console.log("changeCurrent is firing")
     this.setState({
-      current: bounty
+      current: bounty,
+      showForm: false
     }, ()=>{
       console.log("Set state is done!", this.state.current)
     })
+  }
+
+  toggleForm = () =>{
+    this.setState({showForm: !this.state.showForm})
   }
 
   render(){
@@ -57,7 +63,12 @@ class App extends Component {
         </header>
         <main>
           {posters}
-          <ShowBounty current={this.state.current} refreshBounties={this.getBounties} />
+          <ShowBounty 
+            showForm={this.state.showForm} 
+            toggleForm={this.toggleForm}
+            current={this.state.current} 
+            refreshBounties={this.getBounties} 
+          />
           <NewBountyForm current={this.state.current} refreshBounties={this.getBounties}/>
         </main>
       </div>
