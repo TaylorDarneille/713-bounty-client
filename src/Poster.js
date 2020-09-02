@@ -2,8 +2,15 @@ import React, {Component} from 'react'
 
 class Poster extends Component {
     render(){
-        let more = <button onClick={this.props.changeCurrent}>More</button>
-        let less = <button>Less</button>
+        let more = <button onClick={()=> {
+            this.props.changeCurrent(this.props.bounty)
+        }}>More</button>
+
+
+        let less = <button onClick={()=>{
+            this.props.changeCurrent({})
+        }}>Less</button>
+        
         let button = this.props.bounty._id === this.props.currentId ? less : more
         return(
         <div className="poster">

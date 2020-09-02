@@ -29,8 +29,13 @@ class App extends Component {
     })
   }
 
-  changeCurrent = () => {
+  changeCurrent = (bounty) => {
     console.log("changeCurrent is firing")
+    this.setState({
+      current: bounty
+    }, ()=>{
+      console.log("Set state is done!", this.state.current)
+    })
   }
 
   render(){
@@ -38,6 +43,7 @@ class App extends Component {
       return (<Poster key={i} 
                       bounty={bounty}
                       changeCurrent={this.changeCurrent}
+                      currentId={this.state.current._id}
               />)
     })
     return(
