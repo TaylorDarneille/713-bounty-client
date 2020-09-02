@@ -2,7 +2,12 @@ import React, {Component} from 'react'
 
 class Poster extends Component {
     render(){
-        return(<h1>{this.props.bounty.name}</h1>)
+        return(
+        <div className="poster">
+            <h2>WANTED</h2>
+            <h3>{this.props.bounty.name}</h3>
+            <h4>{this.props.bounty.reward}</h4>
+        </div>)
     }
 }
 

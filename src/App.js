@@ -34,7 +34,7 @@ class App extends Component {
       return <Poster key={i} bounty={bounty}/>
     })
     return(
-      <div className="Add">
+      <div className="App">
         <header className="App-header">
           <h1>Wanted Poster Bulletin Board</h1>
           <p>Reduce crime in your galaxy!</p>
