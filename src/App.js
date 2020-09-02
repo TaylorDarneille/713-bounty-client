@@ -29,9 +29,16 @@ class App extends Component {
     })
   }
 
+  changeCurrent = () => {
+    console.log("changeCurrent is firing")
+  }
+
   render(){
     let posters = this.state.bounties.map((bounty, i)=>{
-      return <Poster key={i} bounty={bounty}/>
+      return (<Poster key={i} 
+                      bounty={bounty}
+                      changeCurrent={this.changeCurrent}
+              />)
     })
     return(
       <div className="App">
